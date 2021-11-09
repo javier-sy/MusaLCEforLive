@@ -17,7 +17,7 @@ class SyncHandler(MusaLCE4LiveOSCHandler):
                 self.logger.info("using already created midi_listener_callback for track %s" % encode_ptr(track._live_ptr))
                 return self.midi_listener_callback[track]
             else:
-                self.logger.info("created midi_alistener_callback for %s" % encode_ptr(track._live_ptr))
+                self.logger.info("created midi_listener_callback for %s" % encode_ptr(track._live_ptr))
                 def callback():
                     self.logger.info("midi_listener_callback")
                     self.osc_server.send("/musalce4live/track/midi_audio", dump_midi_audio(track))
