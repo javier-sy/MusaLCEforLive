@@ -1,7 +1,7 @@
 import logging
-logger = logging.getLogger("musa4liveosc")
+logger = logging.getLogger("musalce4live")
 
-logger.info("reloaded musa4liveosc")
+logger.info("reloaded musalce4live")
 
 from .osc_server import OSCServer
 

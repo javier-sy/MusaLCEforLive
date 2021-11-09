@@ -4,11 +4,11 @@ import logging
 import base64
 from .osc_server import OSCServer
 
-class MusaDSL4LiveOSCHandler(Component):
+class MusaLCE4LiveOSCHandler(Component):
     def __init__(self, manager):
         super().__init__()
 
-        self.logger = logging.getLogger("musa4liveosc")
+        self.logger = logging.getLogger("musalce4live")
         self.manager = manager
         self.osc_server: OSCServer = self.manager.osc_server
         self.init_api()
