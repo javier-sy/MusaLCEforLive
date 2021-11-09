@@ -1,6 +1,6 @@
 from ableton.v2.control_surface import ControlSurface
 
-from . import musa4liveosc
+from . import musalce4liveosc
 
 import importlib
 import traceback
@@ -8,9 +8,9 @@ import logging
 import os
 
 # TODO: This might need fixing to work on Windows
-logger = logging.getLogger("musa4liveosc")
+logger = logging.getLogger("musalce4live")
 tmp_dir = "/tmp"
-log_path = os.path.join(tmp_dir, "musa4liveosc.log")
+log_path = os.path.join(tmp_dir, "musalce4live.log")
 file_handler = logging.FileHandler(log_path)
 file_handler.setLevel(logging.INFO)
 formatter = logging.Formatter('(%(asctime)s) [%(levelname)s] %(message)s')
@@ -21,9 +21,9 @@ class Manager(ControlSurface):
     def __init__(self, c_instance):
         ControlSurface.__init__(self, c_instance)
         self.handlers = []
-        self.show_message("MusaDSL for Live: Listening for OSC on port %d" % musa4liveosc.OSC_LISTEN_PORT)
+        self.show_message("Musa Live Coding Environment for Live: Listening for OSC on port %d" % musalce4liveosc.OSC_LISTEN_PORT)
 
-        self.osc_server = musa4liveosc.OSCServer()
+        self.osc_server = musalce4liveosc.OSCServer()
         self.schedule_message(0, self.tick)
 
         self.init_api()
@@ -40,9 +40,9 @@ class Manager(ControlSurface):
 
         with self.component_guard():
             self.handlers = [
-                musa4liveosc.ApplicationHandler(self),
-                musa4liveosc.TrackHandler(self),
-                musa4liveosc.SyncHandler(self)
+                musalce4liveosc.ApplicationHandler(self),
+                musalce4liveosc.TrackHandler(self),
+                musalce4liveosc.SyncHandler(self)
             ]
 
     def clear_api(self):
@@ -63,12 +63,12 @@ class Manager(ControlSurface):
 
     def reload_imports(self):
         try:
-            importlib.reload(musa4liveosc.application)
-            importlib.reload(musa4liveosc.handler)
-            importlib.reload(musa4liveosc.osc_server)
-            importlib.reload(musa4liveosc.track)
-            importlib.reload(musa4liveosc.sync)
-            importlib.reload(musa4liveosc)
+            importlib.reload(musalce4liveosc.application)
+            importlib.reload(musalce4liveosc.handler)
+            importlib.reload(musalce4liveosc.osc_server)
+            importlib.reload(musalce4liveosc.track)
+            importlib.reload(musalce4liveosc.sync)
+            importlib.reload(musalce4liveosc)
         except Exception as e:
             exc = traceback.format_exc()
             logging.warning(exc)

@@ -1,7 +1,7 @@
 from typing import Tuple, Any
-from .handler import MusaDSL4LiveOSCHandler
+from .handler import MusaLCE4LiveOSCHandler
 
-class DeviceHandler(MusaDSL4LiveOSCHandler):
+class DeviceHandler(MusaLCE4LiveOSCHandler):
     def init_api(self):
         def create_device_callback(func, *args):
             def device_callback(params: Tuple[Any]):

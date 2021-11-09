@@ -1,8 +1,8 @@
 from typing import Tuple, Any
-from .handler import MusaDSL4LiveOSCHandler
+from .handler import MusaLCE4LiveOSCHandler
 import Live
 
-class ClipHandler(MusaDSL4LiveOSCHandler):
+class ClipHandler(MusaLCE4LiveOSCHandler):
     def init_api(self):
         def create_clip_callback(func, *args):
             def clip_callback(params: Tuple[Any]):

@@ -1,8 +1,8 @@
 from functools import partial
 from typing import Tuple, Any
-from .handler import MusaDSL4LiveOSCHandler
+from .handler import MusaLCE4LiveOSCHandler
 
-class SongHandler(MusaDSL4LiveOSCHandler):
+class SongHandler(MusaLCE4LiveOSCHandler):
     def init_api(self):
         #--------------------------------------------------------------------------------
         # Init callbacks for Set: methods

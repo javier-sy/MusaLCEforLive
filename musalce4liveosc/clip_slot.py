@@ -1,7 +1,7 @@
 from typing import Tuple, Any
-from .handler import MusaDSL4LiveOSCHandler
+from .handler import MusaLCE4LiveOSCHandler
 
-class ClipSlotHandler(MusaDSL4LiveOSCHandler):
+class ClipSlotHandler(MusaLCE4LiveOSCHandler):
     def init_api(self):
         def create_clip_slot_callback(func, *args):
             def clip_slot_callback(params: Tuple[Any]):

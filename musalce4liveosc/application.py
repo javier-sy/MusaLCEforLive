@@ -1,8 +1,8 @@
 import Live
 from typing import Tuple
-from .handler import MusaDSL4LiveOSCHandler
+from .handler import MusaLCE4LiveOSCHandler
 
-class ApplicationHandler(MusaDSL4LiveOSCHandler):
+class ApplicationHandler(MusaLCE4LiveOSCHandler):
     def init_api(self):
         #--------------------------------------------------------------------------------
         # Generic callbacks

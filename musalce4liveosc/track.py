@@ -1,7 +1,7 @@
 from typing import Tuple, Any
-from .handler import MusaDSL4LiveOSCHandler
+from .handler import MusaLCE4LiveOSCHandler
 
-class TrackHandler(MusaDSL4LiveOSCHandler):
+class TrackHandler(MusaLCE4LiveOSCHandler):
     def init_api(self):
         def create_track_callback(func, *args):
             def track_callback(params: Tuple[Any]):
