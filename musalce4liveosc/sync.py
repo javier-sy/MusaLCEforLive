@@ -20,7 +20,7 @@ class SyncHandler(MusaLCE4LiveOSCHandler):
                 self.logger.info("created midi_listener_callback for %s" % encode_ptr(track._live_ptr))
                 def callback():
                     self.logger.info("midi_listener_callback")
-                    self.osc_server.send("/musalce4live/track/midi_audio", dump_midi_audio(track))
+                    self.osc_server.send("/musalce4live/track/midi_audio", dump_midi(track))
 
                 self.midi_listener_callback[track] = callback
                 return callback
@@ -35,7 +35,7 @@ class SyncHandler(MusaLCE4LiveOSCHandler):
                 self.logger.info("created audio_listener_callback for %s" % encode_ptr(track._live_ptr))
                 def callback():
                     self.logger.info("audio_listener_callback")
-                    self.osc_server.send("/musalce4live/track/midi_audio", dump_midi_audio(track))
+                    self.osc_server.send("/musalce4live/track/midi_audio", dump_audio(track))
 
                 self.audio_listener_callback[track] = callback
                 return callback
@@ -88,10 +88,13 @@ class SyncHandler(MusaLCE4LiveOSCHandler):
 
             return tracks_data
 
-        def dump_midi_audio(track):
+        def dump_midi(track):
             return [encode_ptr(track._live_ptr),
                     int(track.has_midi_input),
-                    int(track.has_midi_output),
+                    int(track.has_midi_output)]
+
+        def dump_audio(track):
+            return [encode_ptr(track._live_ptr),
                     int(track.has_audio_input),
                     int(track.has_audio_output)]
 

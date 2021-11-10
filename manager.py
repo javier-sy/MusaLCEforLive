@@ -19,6 +19,8 @@ logger.addHandler(file_handler)
 
 class Manager(ControlSurface):
     def __init__(self, c_instance):
+        logger.info("Manager.__init__: c_instance {}".format(c_instance))
+
         ControlSurface.__init__(self, c_instance)
         self.handlers = []
         self.show_message("Musa Live Coding Environment for Live: Listening for OSC on port %d" % musalce4liveosc.OSC_LISTEN_PORT)
@@ -82,7 +84,9 @@ class Manager(ControlSurface):
         self.show_message("Disconnecting...")
         logger.info("Disconneting...")
         self.clear_api()
+        logger.info("Disconneting... cleared handlers")
         self.osc_server.shutdown()
+        logger.info("Disconneting... osc server shutdown")
         super().disconnect()
-        logger.info("...disconnected")
-        self.show_message("...disconnected")
+        logger.info("Disconneting... done!")
+        self.show_message("Disconneting... done!")

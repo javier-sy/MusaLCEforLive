@@ -28,7 +28,7 @@ class OSCServer:
         self._socket.bind(self._local_addr)
         self._callbacks = {}
 
-        self.logger = logging.getLogger("musa4liveosc")
+        self.logger = logging.getLogger("musalce4live")
         self.logger.info("Starting OSC server (local %s, remote %s)",
                          str(self._local_addr), str(self._remote_addr))
 
@@ -51,7 +51,7 @@ class OSCServer:
             msg_builder.add_arg(param)
         try:
             msg = msg_builder.build()
-            self.logger.info("Message: {}".format(msg.dgram))
+            self.logger.info("sending message: {}".format(msg.dgram))
             self._socket.sendto(msg.dgram, self._remote_addr)
         except BuildError:
             self.logger.info("MusaDSL4LiveOSC: OSC build error: %s" % (traceback.format_exc()))
