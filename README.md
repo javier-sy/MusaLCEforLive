@@ -27,7 +27,7 @@ MusaLCEforLive Ableton Live (this component) integrates with Ableton Live as a M
 
 ## Acknowledgements
 
-This project is inspired on [ideoforms](https://github.com/ideoforms) project [AbletonOSC](https://github.com/ideoforms/AbletonOSC).
+This project is inspired and based on [ideoforms](https://github.com/ideoforms) project [AbletonOSC](https://github.com/ideoforms/AbletonOSC).
 
 Thanks to [ideoforms](https://github.com/ideoforms) for all the work done in **AbletonOSC**.
 
