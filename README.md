@@ -2,17 +2,18 @@
 
 **Ableton Live Controller for Musa Live Coding Environment.**
 
-This project is part of **Musa Live Coding Environment** for Ableton Live.
+This project is part of **Musa Live Coding Environment**.
 
-Musa Live Coding Environment is a suite of components to add a live coding environment based on [Musa-DSL](https://github.com/javier-sy/musa-dsl) to Ableton Live 11 and greater.
+Musa Live Coding Environment is a suite of components to add a live coding environment based on [Musa-DSL](https://github.com/javier-sy/musa-dsl) to several DAW's (Ableton Live 11 or higher and Bitwig Studio 4 or higher, for the moment).
 
 The suite is composed of:
 - Atom source code editor (where the user edits the source code of the composition and can submit commands to run on real-time).
 - musa-dsl-atom-repl plugin for Atom editor (that allows Atom editor to communicate with the server).
-- MusaLCEforLive-Server processing server (the server that interprets the source code and the commands submitted by the user).
+- MusaLCEServer processing server (the server that interprets the source code and the commands submitted by the user).
 - MusaLCEforLive Ableton Live Controller (that establishes the communication between Ableton Live and the server).
+- MusaLCEforBitwig Bitwig Studio Controller (that establishes the communication between Bitwig Studio and the server).
 
-You need also, of course, Ableton Live 11 or greater.
+You need also, of course, Ableton Live 11 or greater or Bitwig Studio 4 or greater.
 
 MusaLCEforLive Ableton Live (this component) integrates with Ableton Live as a MIDI Controller Script.
 
