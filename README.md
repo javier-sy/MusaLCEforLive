@@ -27,13 +27,13 @@ MusaLCEforLive Ableton Live (this component) integrates with Ableton Live as a M
 
 ## Acknowledgements
 
-This project is inspired and based on [ideoforms](https://github.com/ideoforms) project [AbletonOSC](https://github.com/ideoforms/AbletonOSC).
+This project is based on [ideoforms](https://github.com/ideoforms) project [AbletonOSC](https://github.com/ideoforms/AbletonOSC).
 
 Thanks to [ideoforms](https://github.com/ideoforms) for all the work done in **AbletonOSC**.
 
-Thanks to [Stu Fisher](https://github.com/stufisher/) (and other authors) for LiveOSC, the spiritual predecessor to **AbletonOSC**.
-
-Thanks to [Julien Bayle](https://structure-void.com/ableton-live-midi-remote-scripts/#liveAPI) and [NSUSpray](https://nsuspray.github.io/Live_API_Doc/) for providing XML API docs, based on original work by [Hans Petrov](http://remotescripts.blogspot.com/p/support-files.html).
+As **ideoforms** acknowledges:
+* Thanks to [Stu Fisher](https://github.com/stufisher/) (and other authors) for LiveOSC, the spiritual predecessor to **AbletonOSC**.
+* Thanks to [Julien Bayle](https://structure-void.com/ableton-live-midi-remote-scripts/#liveAPI) and [NSUSpray](https://nsuspray.github.io/Live_API_Doc/) for providing XML API docs, based on original work by [Hans Petrov](http://remotescripts.blogspot.com/p/support-files.html).
 
 # License
 
@@ -44,7 +44,7 @@ so it is considered to have all rights reserved
 [here](https://opensource.stackexchange.com/questions/1720/what-can-i-assume-if-a-publicly-published-project-has-no-license)).
 
 For this reason **MusaLCEforLive** can't have a Copyright nor a LICENSE. 
-It I could put a license it would be licensed under **GPL 3.0 License** that I think 
+If I could put a license it would be licensed under **GPL 3.0 License** that I think 
 could be compatible with the intention of the authors (material and spiritual) 
 of the code on which **MusaLCEforLIVE** is based.
 
