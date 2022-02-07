@@ -128,14 +128,19 @@ class SyncHandler(MusaLCE4LiveOSCHandler):
             if not track in self.name_listener_callback:
                 track.add_name_listener(create_name_listener_callback(track))
 
+        def hello_callback(params: Tuple[Any]):
+            self.logger.info("musa4l_hello_callback")
+            return dump_tracks()
+
         def tracks_callback(params: Tuple[Any]):
             self.logger.info("musa4l_tracks_callback")
             return dump_tracks()
         
         set_listeners()
 
+        self.osc_server.add_handler("/hello", hello_callback)
         self.osc_server.add_handler("/musalce4live/tracks", tracks_callback)
-        
+
         tracks_listener_callback()
 
     def clear_api(self):

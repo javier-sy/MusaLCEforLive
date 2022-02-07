@@ -32,6 +32,7 @@ class Manager(ControlSurface):
         def test_callback(params):
             self.show_message("Received OSC OK")
             self.osc_server.send("/live/test", ("ok",))
+
         def reload_callback(params):
             self.reload_imports()
 

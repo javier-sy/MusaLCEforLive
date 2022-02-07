@@ -11,4 +11,4 @@ class ApplicationHandler(MusaLCE4LiveOSCHandler):
             application = Live.Application.get_application()
             return application.get_major_version(), application.get_minor_version()
         self.osc_server.add_handler("/live/application/get/version", get_version)
-        self.osc_server.send("/live/startup")
+        self.osc_server.send("/hello")
