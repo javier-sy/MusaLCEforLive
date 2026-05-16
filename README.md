@@ -12,6 +12,8 @@ A MIDI Remote Script (Python) for Ableton Live 11+ that bridges Ableton Live wit
 
 This component is the DAW-side endpoint for Live. It is part of the **suite workflow** of MusaLCE — for the standalone REPL workflow (no server, no script), see the [MusaLCEClientForVSCode README](https://github.com/javier-sy/MusaLCEClientForVSCode#readme).
 
+For the full architecture of the suite (component responsibilities, REPL DSL surface, Stop/Play semantics, and the OSC handler + surface contracts in detail), see the canonical reference: [musalce-server/docs/architecture.md](https://github.com/javier-sy/musalce-server/blob/master/docs/architecture.md).
+
 ## Requirements
 
 - Ableton Live 11 or higher
