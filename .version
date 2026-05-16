@@ -1,0 +1,17 @@
+# Configuración de versión para MusaLCEforLive
+TYPE="repo"
+PKG_NAME="MusaLCEforLive"
+VERSION_FILE="VERSION"
+TEST_COMMAND=""
+PUBLISH_PLATFORM="GitHub"
+
+# Detección de instalación local: Live carga los Remote Scripts desde
+# ~/Music/Ableton/User Library/Remote Scripts/<name>/ (macOS). El VERSION
+# del repo se copia con el deploy del directorio; comparamos contra él.
+INSTALL_PATH='$HOME/Music/Ableton/User Library/Remote Scripts/MusaLCEforLive'
+INSTALL_VERSION_CHECK='[[ -f "$INSTALL_PATH/VERSION" ]] && [[ "$(cat "$INSTALL_PATH/VERSION" 2>/dev/null | tr -d "[:space:]")" == "$version" ]]'
+
+# Install: rsync del directorio origen al User Library. Sin --delete por
+# seguridad (preserva ficheros locales del usuario en el destino). Tras
+# ejecutar, Live necesita un restart para recargar el script.
+INSTALL_COMMAND='mkdir -p "$HOME/Music/Ableton/User Library/Remote Scripts/MusaLCEforLive" && rsync -av --exclude=".git" --exclude="__pycache__" --exclude="*.pyc" --exclude=".version" --exclude="README_OLD.md" --exclude="CONTRIBUTING.md" ./ "$HOME/Music/Ableton/User Library/Remote Scripts/MusaLCEforLive/"'
