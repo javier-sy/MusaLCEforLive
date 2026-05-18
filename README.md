@@ -80,7 +80,7 @@ Both ports are hardcoded to match `musalce-server`'s expected channel.
 
 ### Surface protocol feature gap
 
-This script does **not** yet implement the MusaLCE Surface protocol relay that ships in [MusaLCEforBitwig](https://github.com/javier-sy/MusaLCEforBitwig). That means Stream Deck integration via [Pulso Bridge](https://github.com/javier-sy/pulso) is currently a Bitwig-only feature. Scoring `surface[:event]` controls works in code, but their state will not reach a Stream Deck driven from a Live session until the relay is ported here.
+This script does **not** yet implement the MusaLCE Surface protocol relay that ships in [MusaLCEforBitwig](https://github.com/javier-sy/MusaLCEforBitwig). That means Stream Deck integration via **Pulso Bridge** ([yeste.studio](https://yeste.studio)'s upcoming Stream Deck plugin for the MusaLCE Surface protocol; public release pending) is currently a Bitwig-only feature. Scoring `surface[:event]` controls works in code, but their state will not reach a Stream Deck driven from a Live session until the relay is ported here.
 
 ## Reload during development
 
