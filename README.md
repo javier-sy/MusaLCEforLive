@@ -101,6 +101,16 @@ The script writes to a hardcoded log file:
 tail -f /tmp/musalce4live.log
 ```
 
+## More from the MusaDSL ecosystem
+
+- [MusaDSL](https://musadsl.yeste.studio) — Ruby framework for algorithmic sound and musical composition.
+- [MusaLCE](https://musalce.yeste.studio) — live coding environment for Ableton Live and Bitwig Studio.
+- [Nota](https://nota.yeste.studio) — Claude Code plugin for AI-assisted MusaDSL composition.
+- **Pulso** — Stream Deck plugin for MusaLCE Surface controls *(upcoming)*.
+- **VST3 plugins** — collection of audio plugins for mixing and mastering *(upcoming)*.
+
+For the full map — descriptions, how they relate, which one to pick for what — see [musa-ecosystem.yeste.studio](https://musa-ecosystem.yeste.studio).
+
 ## Acknowledgements
 
 This project is based on [ideoforms](https://github.com/ideoforms)' project [AbletonOSC](https://github.com/ideoforms/AbletonOSC).
