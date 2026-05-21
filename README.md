@@ -80,7 +80,7 @@ Both ports are hardcoded to match `musalce-server`'s expected channel.
 
 ### Surface protocol feature gap
 
-This script does **not** yet implement the MusaLCE Surface protocol relay that ships in [MusaLCEforBitwig](https://github.com/javier-sy/MusaLCEforBitwig). That means Stream Deck integration via **Pulso Bridge** ([yeste.studio](https://yeste.studio)'s upcoming Stream Deck plugin for the MusaLCE Surface protocol; public release pending) is currently a Bitwig-only feature. Scoring `surface[:event]` controls works in code, but their state will not reach a Stream Deck driven from a Live session until the relay is ported here.
+This script does **not** yet implement the MusaLCE Surface protocol relay that ships in [MusaLCEforBitwig](https://github.com/javier-sy/MusaLCEforBitwig). That means Stream Deck integration via **Pulso Bridge** — the DAW-side component of [yeste.studio](https://yeste.studio)'s upcoming Pulso Stream Deck control system for music DAWs; public release pending — is currently Bitwig-only as far as the MusaLCE Surface relay is concerned. Scoring `surface[:event]` controls works in code, but their state will not reach a Stream Deck driven from a Live session until the relay is ported here.
 
 ## Reload during development
 
@@ -106,7 +106,7 @@ tail -f /tmp/musalce4live.log
 - [MusaDSL](https://musadsl.yeste.studio) — Ruby framework for algorithmic sound and musical composition.
 - [MusaLCE](https://musalce.yeste.studio) — live coding environment for Ableton Live and Bitwig Studio.
 - [Nota](https://nota.yeste.studio) — Claude Code plugin for AI-assisted MusaDSL composition.
-- **Pulso** — Stream Deck plugin for MusaLCE Surface controls *(upcoming)*.
+- **Pulso** — Stream Deck control for music DAWs (Bitwig today; Ableton planned), with MusaLCE Surface integration *(upcoming)*.
 
 For the full map — descriptions, how they relate, which one to pick for what — see [musa-ecosystem.yeste.studio](https://musa-ecosystem.yeste.studio).
 
