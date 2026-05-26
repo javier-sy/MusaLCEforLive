@@ -1,5 +1,7 @@
 # MusaDSL4LiveOSC: Control Ableton Live 11+ with OSC
 
+> ⚠️ **Historical document.** This README documents the inherited AbletonOSC `/live/*` surface that this project originally exposed. That surface has been **removed** from MusaLCEforLive — only the MusaLCE-specific endpoints (`/musalce4live/*`, `/hello`, `/live/test`, `/live/reload`) remain. See the current `README.md` and `musalce-server/docs/architecture.md` for the actual surface. This file is kept for historical reference (project lineage, academic citation).
+
 MusaDSL4LiveOSC is a MIDI remote script that provides an Open Sound Control (OSC) interface to control [Ableton Live 11+](https://www.ableton.com/en/live/). Building on ideas from the older [LiveOSC](https://github.com/hanshuebner/LiveOSC) scripts, its aim is to expose the entire [Live Object Model](https://docs.cycling74.com/max8/vignettes/live_object_model) API, providing comprehensive control over Live's control interfaces using the same naming structure and object hierarchy as LOM.
 
 It is currently (2021-05-07) a work-in-progress, exposing a few initial APIs.

@@ -36,15 +36,21 @@ class Manager(ControlSurface):
         def reload_callback(params):
             self.reload_imports()
 
+        # Operational lifecycle endpoints (kept under /live/* by convention;
+        # they are MusaLCE-specific, not AbletonOSC heritage).
         self.osc_server.add_handler("/live/test", test_callback)
         self.osc_server.add_handler("/live/reload", reload_callback)
 
         with self.component_guard():
             self.handlers = [
-                musalce4liveosc.ApplicationHandler(self),
-                musalce4liveosc.TrackHandler(self),
                 musalce4liveosc.SyncHandler(self)
             ]
+
+        # Bootstrap ping: musalce-server's /hello handler responds by
+        # requesting the initial track dump (sent after SyncHandler is
+        # instantiated, so its inbound callback for /musalce4live/tracks
+        # is already registered).
+        self.osc_server.send("/hello")
 
     def clear_api(self):
         self.osc_server.clear_handlers()
@@ -64,10 +70,8 @@ class Manager(ControlSurface):
 
     def reload_imports(self):
         try:
-            importlib.reload(musalce4liveosc.application)
-            importlib.reload(musalce4liveosc.handler)
+            importlib.reload(musalce4liveosc.utils)
             importlib.reload(musalce4liveosc.osc_server)
-            importlib.reload(musalce4liveosc.track)
             importlib.reload(musalce4liveosc.sync)
             importlib.reload(musalce4liveosc)
         except Exception as e:

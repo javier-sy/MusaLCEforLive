@@ -1,7 +1,33 @@
+import logging
 from typing import Tuple, Any
-from .handler import MusaLCE4LiveOSCHandler, encode_ptr
+from ableton.v2.control_surface.component import Component
+from .utils import encode_ptr
 
-class SyncHandler(MusaLCE4LiveOSCHandler):
+
+class SyncHandler(Component):
+    """Push the Live track registry to musalce-server and keep it in sync.
+
+    Owns:
+      - listeners on song.tracks and on each track's name / MIDI / audio
+        I/O / sub-routing properties;
+      - the two inbound endpoints used by the server to (re-)request a
+        full track dump:
+          /hello                  — server-side bootstrap ping
+          /musalce4live/tracks    — explicit resync request
+      - the outbound endpoints that carry the dump itself:
+          /musalce4live/tracks
+          /musalce4live/track/midi
+          /musalce4live/track/audio
+          /musalce4live/track/routings
+          /musalce4live/track/name
+    """
+
+    def __init__(self, manager):
+        super().__init__()
+        self.logger = logging.getLogger("musalce4live")
+        self.manager = manager
+        self.osc_server = self.manager.osc_server
+        self.init_api()
 
     def init_api(self):
         self.logger.info("SyncHandler loaded")
@@ -20,7 +46,7 @@ class SyncHandler(MusaLCE4LiveOSCHandler):
                 self.logger.info("created midi_listener_callback for %s" % encode_ptr(track._live_ptr))
                 def callback():
                     self.logger.info("midi_listener_callback")
-                    self.osc_server.send("/musalce4live/track/midi_audio", dump_midi(track))
+                    self.osc_server.send("/musalce4live/track/midi", dump_midi(track))
 
                 self.midi_listener_callback[track] = callback
                 return callback
@@ -35,7 +61,7 @@ class SyncHandler(MusaLCE4LiveOSCHandler):
                 self.logger.info("created audio_listener_callback for %s" % encode_ptr(track._live_ptr))
                 def callback():
                     self.logger.info("audio_listener_callback")
-                    self.osc_server.send("/musalce4live/track/midi_audio", dump_audio(track))
+                    self.osc_server.send("/musalce4live/track/audio", dump_audio(track))
 
                 self.audio_listener_callback[track] = callback
                 return callback
