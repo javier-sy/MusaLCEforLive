@@ -1,8 +1,8 @@
 # MusaLCE for Live
 
-**Ableton Live MIDI Remote Script for the Musa Live Coding Environment.**
+**Ableton Live MIDI Remote Script for the Musa Live Coding Environment Suite.**
 
-A MIDI Remote Script (Python) for Ableton Live 11+ that bridges Ableton Live with the [musalce-server](https://github.com/javier-sy/musalce-server) Ruby gem. The score code you write in [Visual Studio Code](https://github.com/javier-sy/MusaLCEClientForVSCode) is evaluated by `musalce-server`, which uses this script to drive Live (MIDI clock sync via a virtual MIDI bus, track manipulation via the Live API, MIDI note output).
+A MIDI Remote Script (Python) for Ableton Live 11+ that bridges Ableton Live with the [musalce-server](https://github.com/javier-sy/musalce-server) Ruby gem. The score code you write in [Visual Studio Code](https://github.com/javier-sy/MusaLCEClientForVSCode) with [MusaLCEClientForVSCode](https://github.com/javier-sy/MusaLCEClientForVSCode) is evaluated by `musalce-server`, which uses this script to drive Live (MIDI clock sync via a virtual MIDI bus, track manipulation via the Live API, MIDI note output).
 
 ## How it fits in the suite
 
@@ -10,9 +10,9 @@ A MIDI Remote Script (Python) for Ableton Live 11+ that bridges Ableton Live wit
 [VSCode + MusaLCEClientForVSCode] ──TCP 1327─▶ [musalce-server] ──OSC/UDP──▶ [MusaLCEforLive] ──▶ [Ableton Live]
 ```
 
-This component is the DAW-side endpoint for Live. It is part of the **suite workflow** of MusaLCE — for the standalone REPL workflow (no server, no script), see the [MusaLCEClientForVSCode README](https://github.com/javier-sy/MusaLCEClientForVSCode#readme).
+This component is the DAW-side endpoint for Live. It is part of the **MusaLCE Server Suite** — for the standalone REPL workflow (no server, no script), see the toolkit way in [MusaLCE website](https://musalce.yeste.studio)..
 
-For the full architecture of the suite (component responsibilities, REPL DSL surface, Stop/Play semantics, and the OSC handler + surface contracts in detail), see the canonical reference: [musalce-server/docs/architecture.md](https://github.com/javier-sy/musalce-server/blob/master/docs/architecture.md).
+For the full architecture of the suite see the canonical reference: [musalce-server/docs/architecture.md](https://github.com/javier-sy/musalce-server/blob/master/docs/architecture.md).
 
 ## Requirements
 
@@ -25,11 +25,11 @@ For the full architecture of the suite (component responsibilities, REPL DSL sur
 
 Copy the entire `MusaLCEforLive/` folder (or symlink it) into Live's *User Library → Remote Scripts*:
 
-| OS | Path |
-|---|---|
-| macOS | `~/Music/Ableton/User Library/Remote Scripts/MusaLCEforLive/` |
-| Linux | `~/Music/Ableton/User Library/Remote Scripts/MusaLCEforLive/` |
-| Windows | `%USERPROFILE%\Documents\Ableton\User Library\Remote Scripts\MusaLCEforLive\` |
+| OS | Path | Status |
+|---|---|---|
+| macOS | `~/Music/Ableton/User Library/Remote Scripts/MusaLCEforLive/` | Works well |
+| Linux | `~/Music/Ableton/User Library/Remote Scripts/MusaLCEforLive/` | Not tested (testers welcome!) |
+| Windows | `%USERPROFILE%\Documents\Ableton\User Library\Remote Scripts\MusaLCEforLive\` | Not tested (testers welcome!) |
 
 Restart Ableton Live so it picks up the new script.
 
@@ -58,8 +58,6 @@ daw.midi_sync('IAC Driver Bus 1')
 
 In Live's *Preferences → Link/Tempo/MIDI → MIDI*, enable **Sync** on the IAC bus input so Live follows the clock.
 
-For Windows use [loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html); for Linux use `snd-virmidi`. Same pattern: virtual MIDI bus, MusaLCE sends clock, Live syncs to it.
-
 ## OSC ports
 
 | Direction | Port | Constant |
@@ -73,14 +71,14 @@ Both ports are hardcoded to match `musalce-server`'s expected channel.
 
 | Aspect | Live | Bitwig |
 |---|---|---|
-| Transport control from server | ❌ Not available (Live MIDI Remote Script API limitation) | ✅ Full control |
+| Transport control from server | ❌ Not available | ✅ Full control |
 | Clock sync mechanism | Server sends MIDI clock through virtual bus, Live syncs to it | Server reads MIDI clock from any controller marked as clock source |
 | Track names | Can repeat — use `daw.track('Drums', all: true)` to access all of them | Must be unique |
-| MusaLCE Surface protocol (Stream Deck via Pulso) | ❌ **Not yet implemented** | ✅ Implemented in `MusaLCESurfaceRelay` |
+| MusaLCE Surface protocol (Stream Deck via Pulso) | ❌ **Not yet implemented** | ✅ Implemented |
 
 ### Surface protocol feature gap
 
-This script does **not** yet implement the MusaLCE Surface protocol relay that ships in [MusaLCEforBitwig](https://github.com/javier-sy/MusaLCEforBitwig). That means Stream Deck integration via **Pulso Bridge** — the DAW-side component of [yeste.studio](https://yeste.studio)'s upcoming Pulso Stream Deck control system for music DAWs; public release pending — is currently Bitwig-only as far as the MusaLCE Surface relay is concerned. Scoring `surface[:event]` controls works in code, but their state will not reach a Stream Deck driven from a Live session until the relay is ported here.
+This script does **not** yet implement the MusaLCE Surface protocol relay that ships in [MusaLCEforBitwig](https://github.com/javier-sy/MusaLCEforBitwig). That means elgato Stream Deck integration via **Pulso Bridge** — the DAW-side component of [yeste.studio](https://yeste.studio)'s upcoming Pulso Stream Deck control system for music DAWs; public release pending — is currently Bitwig-only as far as the MusaLCE Surface relay is concerned. Scoring `surface[:event]` doesn't break the code, but their state will not reach a Stream Deck driven from a Live session until the relay is ported here.
 
 ## Reload during development
 
@@ -88,14 +86,13 @@ The script exposes an OSC reload command at `/live/reload` that re-imports all `
 
 There is also a smoke-test endpoint `/live/test` that replies `/live/test ok` and shows a banner — handy for verifying the OSC link.
 
-Live's embedded Python implementation does **not** support threading (Live beachballs if a thread is started). All long-running work, including the OSC server, runs from the script's `tick()` method scheduled every 100 ms.
+Live's embedded Python implementation does **not** support threading. All long-running work, including the OSC server, runs from the script's `tick()` method scheduled every 100 ms.
 
 ## Logs
 
 The script writes to a hardcoded log file:
 
-- macOS / Linux: `/tmp/musalce4live.log`
-- Windows: *not yet portable — the path is hardcoded.*
+- macOS: `/tmp/musalce4live.log`
 
 ```bash
 tail -f /tmp/musalce4live.log
